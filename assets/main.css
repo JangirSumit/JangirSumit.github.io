@@ -322,7 +322,7 @@ table td {
     padding: 5px;
   }
   .image-width{
-    width: 98%;
+    width: 98% !important;
     padding: 5px;
   }
 }
