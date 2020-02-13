@@ -328,7 +328,7 @@ table td {
     width: 97% !important;
   }
   .academy-list{
-    display: block;
+    display: block !important;
   }
 }
 
