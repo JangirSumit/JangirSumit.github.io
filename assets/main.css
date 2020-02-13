@@ -325,7 +325,10 @@ table td {
     padding: 5px;
   }
   .full-width{
-    width: 98% !important;
+    width: 97% !important;
+  }
+  .academy-list{
+    display: block;
   }
 }
 
