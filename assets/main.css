@@ -324,6 +324,9 @@ table td {
     width: 98% !important;
     padding: 5px;
   }
+  .full-width{
+    width: 98% !important;
+  }
 }
 
 .post-content ul li{
