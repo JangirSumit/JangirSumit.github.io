@@ -335,6 +335,10 @@ table td {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.post-content ul{
+  list-style: none;
+}
+
 /** Site footer */
 .site-footer {
   border-top: 1px solid #e8e8e8;
