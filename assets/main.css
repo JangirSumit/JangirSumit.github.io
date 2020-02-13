@@ -318,7 +318,7 @@ table td {
     margin-right: 0;
   }
   .post-content {
-    width: 98% !important;
+    width: 95% !important;
     padding: 5px;
   }
   .image-width{
@@ -337,6 +337,7 @@ table td {
 
 .post-content ul{
   list-style: none;
+  margin-left: 0px;
 }
 
 /** Site footer */
