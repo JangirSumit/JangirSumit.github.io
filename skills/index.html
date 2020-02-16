@@ -169,5 +169,14 @@
         </div>
       </div>
     </footer>
+    <script>
+      object.addEventListener("load", function() {
+        var nodes = document.querySelectorAll(".post-content li");
+        for (let index = 0; index < nodes.length; index++) {
+          var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+          nodes[index].style.background = "#" + randomColor;
+        }
+      });
+    </script>
   </body>
 </html>
