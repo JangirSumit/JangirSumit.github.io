@@ -143,8 +143,21 @@
       window.addEventListener("load", function() {
         var nodes = document.querySelectorAll(".post-content li");
         for (let index = 0; index < nodes.length; index++) {
-          var randomColor = Math.floor(Math.random() * 16777215).toString(16);
-          nodes[index].style.background = "#" + randomColor;
+          var colors = [
+            "#96ceb4",
+            "#ffeead",
+            "#ff6f69",
+            "#ffcc5c",
+            "#88d8b0",
+            "#a8e6cf",
+            "#ffd3b6",
+            "#dcedc1",
+            "#ff8b94"
+          ];
+          var random_color = colors[Math.floor(Math.random() * colors.length)];
+
+          //var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+          nodes[index].style.background = random_color;
         }
       });
     </script>
