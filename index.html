@@ -79,6 +79,12 @@
       <section class="hero-grid">
         <div class="wrapper hero-layout">
           <div class="hero-copy">
+            <div class="console-chip-row">
+              <button class="console-chip is-active" data-persona-tab="manager" type="button">Manager</button>
+              <button class="console-chip" data-persona-tab="builder" type="button">Builder</button>
+              <button class="console-chip" data-persona-tab="ai" type="button">AI Workflow</button>
+              <button class="console-chip" data-persona-tab="systems" type="button">System Thinker</button>
+            </div>
             <p class="eyebrow">ENGINEERING MANAGEMENT x AI CODING x DEVELOPER EXPERIENCE</p>
             <h1>Building teams and products that feel like the future shipped early.</h1>
             <p class="hero-text">
@@ -145,6 +151,65 @@ deploy({
             </div>
           </aside>
         </div>
+      </section>
+
+      <section class="wrapper single-panel-wrap">
+        <article class="section-panel build-console-panel">
+          <div class="section-heading">
+            <p class="eyebrow">BUILD CONSOLE</p>
+            <h2>One portfolio, four operating modes.</h2>
+          </div>
+          <div class="build-console-shell">
+            <aside class="build-console-sidebar">
+              <button class="build-console-tab is-active" type="button" data-persona-tab="manager">Manager Mode</button>
+              <button class="build-console-tab" type="button" data-persona-tab="builder">Builder Mode</button>
+              <button class="build-console-tab" type="button" data-persona-tab="ai">AI Workflow Mode</button>
+              <button class="build-console-tab" type="button" data-persona-tab="systems">System Thinker Mode</button>
+            </aside>
+            <div class="build-console-stage">
+              <article class="persona-stage is-active" data-persona-panel="manager">
+                <span class="card-index">Mode 01</span>
+                <h3>Manager</h3>
+                <p>I optimize for execution systems, calm delivery, team health, and product clarity under ambiguity.</p>
+                <ul class="persona-bullets">
+                  <li>Turns ambiguity into milestones.</li>
+                  <li>Raises team leverage through structure and trust.</li>
+                  <li>Balances delivery pressure with sustainable quality.</li>
+                </ul>
+              </article>
+              <article class="persona-stage" data-persona-panel="builder">
+                <span class="card-index">Mode 02</span>
+                <h3>Builder</h3>
+                <p>I still think in code, interfaces, architecture tradeoffs, and how products actually feel when they ship.</p>
+                <ul class="persona-bullets">
+                  <li>JavaScript, React, C#, .NET, APIs.</li>
+                  <li>Product-minded frontend and full stack execution.</li>
+                  <li>Hands-on credibility that informs leadership.</li>
+                </ul>
+              </article>
+              <article class="persona-stage" data-persona-panel="ai">
+                <span class="card-index">Mode 03</span>
+                <h3>AI Workflow</h3>
+                <p>I use AI as an execution amplifier across planning, coding, review, and technical communication.</p>
+                <ul class="persona-bullets">
+                  <li>Prompt-driven solution framing.</li>
+                  <li>Fast iteration with human review loops.</li>
+                  <li>AI embedded into delivery, not bolted on.</li>
+                </ul>
+              </article>
+              <article class="persona-stage" data-persona-panel="systems">
+                <span class="card-index">Mode 04</span>
+                <h3>System Thinker</h3>
+                <p>I like connecting people, process, architecture, platform, and product signals into one coherent operating model.</p>
+                <ul class="persona-bullets">
+                  <li>Platform and developer productivity lens.</li>
+                  <li>Cross-functional systems thinking.</li>
+                  <li>Visible patterns over isolated wins.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </article>
       </section>
 
       <section class="wrapper manifesto-section">
@@ -322,6 +387,94 @@ deploy({
         </div>
       </section>
 
+      <section class="wrapper single-panel-wrap">
+        <article class="section-panel simulator-panel">
+          <div class="section-heading">
+            <p class="eyebrow">HOW I LEAD</p>
+            <h2>Scenario simulator for how I handle real engineering situations.</h2>
+          </div>
+          <div class="simulator-grid">
+            <div class="simulator-choices">
+              <button class="sim-choice is-active" type="button" data-sim-case="priority">Priority conflict</button>
+              <button class="sim-choice" type="button" data-sim-case="risk">Delivery risk</button>
+              <button class="sim-choice" type="button" data-sim-case="people">People issue</button>
+              <button class="sim-choice" type="button" data-sim-case="ai">AI adoption</button>
+            </div>
+            <div class="simulator-output">
+              <article class="sim-case is-active" data-sim-panel="priority">
+                <h3>Priority conflict</h3>
+                <p class="sim-problem">A team is hit with conflicting asks from product, engineering, and customer escalation.</p>
+                <p class="sim-answer">I create one decision frame, align around business impact, sequence what ships now, and explicitly defer the rest so the team regains focus.</p>
+              </article>
+              <article class="sim-case" data-sim-panel="risk">
+                <h3>Delivery risk</h3>
+                <p class="sim-problem">A release is slipping and confidence is low.</p>
+                <p class="sim-answer">I shorten the horizon, isolate the real blockers, reduce scope if needed, and reset the plan around a believable path instead of optimistic noise.</p>
+              </article>
+              <article class="sim-case" data-sim-panel="people">
+                <h3>People issue</h3>
+                <p class="sim-problem">A strong engineer is losing momentum and collaboration quality is dropping.</p>
+                <p class="sim-answer">I address it early, make the tension discussable, and rebuild clarity around expectations, support, and next-step ownership.</p>
+              </article>
+              <article class="sim-case" data-sim-panel="ai">
+                <h3>AI adoption</h3>
+                <p class="sim-problem">The team wants AI help but quality and trust are inconsistent.</p>
+                <p class="sim-answer">I standardize where AI helps most, define review guardrails, and treat it like an engineering workflow design problem, not a novelty rollout.</p>
+              </article>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="wrapper single-panel-wrap">
+        <article class="section-panel ops-panel">
+          <div class="section-heading">
+            <p class="eyebrow">A DAY IN MY ORG</p>
+            <h2>An animated operating system for how work actually moves.</h2>
+          </div>
+          <div class="ops-grid">
+            <div class="ops-lane">
+              <span class="ops-label">Morning</span>
+              <div class="ops-track">
+                <i class="ops-event ops-event-meeting">Standup</i>
+                <i class="ops-event ops-event-decision">Priorities</i>
+              </div>
+            </div>
+            <div class="ops-lane">
+              <span class="ops-label">Midday</span>
+              <div class="ops-track">
+                <i class="ops-event ops-event-code">Architecture review</i>
+                <i class="ops-event ops-event-ai">AI pair-build</i>
+              </div>
+            </div>
+            <div class="ops-lane">
+              <span class="ops-label">Afternoon</span>
+              <div class="ops-track">
+                <i class="ops-event ops-event-unblock">Unblocks</i>
+                <i class="ops-event ops-event-ship">Release check</i>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="wrapper single-panel-wrap">
+        <article class="section-panel copilot-panel">
+          <div class="section-heading">
+            <p class="eyebrow">AI COPILOT DEMO</p>
+            <h2>How I use AI in planning, coding, review, and communication.</h2>
+          </div>
+          <div class="copilot-window">
+            <div class="copilot-thread">
+              <div class="copilot-msg user">Summarize release risk for this sprint.</div>
+              <div class="copilot-msg ai">Top risk: scope collision across feature delivery and stabilization. Recommend split release path and explicit owner per blocker.</div>
+              <div class="copilot-msg user">Convert this into leadership-ready update.</div>
+              <div class="copilot-msg ai">Status: moderate risk, mitigated by narrowed scope, daily blocker review, and a revised sequence focused on critical-path delivery.</div>
+            </div>
+          </div>
+        </article>
+      </section>
+
       <section class="wrapper launcher-section">
         <div class="launcher-copy">
           <p class="eyebrow">DEEPER SIGNALS</p>
@@ -373,6 +526,7 @@ deploy({
     </footer>
   </div>
   <script src="/assets/media-loader.js"></script>
+  <script src="/assets/interactive-portfolio.js"></script>
 </body>
 
 </html>
