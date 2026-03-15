@@ -3492,10 +3492,22 @@ table td {
 }
 
 .resume-sheet {
+  position: relative;
   padding: 34px;
   border-radius: 28px;
   border: 1px solid rgba(158, 179, 202, 0.12);
-  background: linear-gradient(180deg, rgba(11, 24, 43, 0.88) 0%, rgba(5, 13, 24, 0.96) 100%);
+  background:
+    linear-gradient(135deg, rgba(121, 182, 255, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(11, 24, 43, 0.88) 0%, rgba(5, 13, 24, 0.96) 100%);
+}
+
+.resume-sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(90deg, #7cf7d4 0%, #66b8ff 55%, #ffd166 100%);
 }
 
 .resume-header {
@@ -3513,20 +3525,85 @@ table td {
 }
 
 .resume-summary {
-  margin-bottom: 0;
+  margin-bottom: 18px;
   color: #9eb3ca;
-  line-height: 1.8;
+  line-height: 1.7;
+}
+
+.resume-highlight-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resume-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(158, 179, 202, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: #eff6ff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .resume-contact {
   display: grid;
   align-content: start;
-  gap: 8px;
+  gap: 10px;
 }
 
 .resume-contact p {
   margin-bottom: 0;
   color: #eff6ff;
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(158, 179, 202, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.resume-contact span {
+  color: #ffd166;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.resume-impact-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.resume-impact-strip article {
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(158, 179, 202, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+}
+
+.resume-impact-strip span {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #ffd166;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.resume-impact-strip strong {
+  display: block;
+  color: #eff6ff;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .resume-grid {
@@ -3539,7 +3616,8 @@ table td {
   padding: 22px;
   border-radius: 22px;
   border: 1px solid rgba(158, 179, 202, 0.12);
-  background: rgba(255, 255, 255, 0.03);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .resume-section-wide {
@@ -3549,10 +3627,13 @@ table td {
 .resume-section h3 {
   margin-bottom: 16px;
   font-size: 22px;
+  color: #eff6ff;
 }
 
 .resume-entry {
   margin-bottom: 18px;
+  padding-left: 16px;
+  border-left: 2px solid rgba(102, 184, 255, 0.28);
 }
 
 .resume-entry:last-child {
@@ -3568,6 +3649,7 @@ table td {
 
 .resume-entry-head strong {
   font-size: 18px;
+  color: #eff6ff;
 }
 
 .resume-entry-head span {
@@ -3598,7 +3680,8 @@ table td {
 
 @media screen and (max-width: 900px) {
   .resume-header,
-  .resume-grid {
+  .resume-grid,
+  .resume-impact-strip {
     grid-template-columns: 1fr;
   }
 
@@ -3654,6 +3737,66 @@ table td {
     border: 0 !important;
   }
 
+  .resume-sheet {
+    position: static !important;
+    padding: 0 !important;
+  }
+
+  .resume-sheet::before {
+    content: "";
+    display: block;
+    position: static !important;
+    height: 8px;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #23476a 0%, #4b83b5 55%, #d1a441 100%) !important;
+    border-radius: 0 !important;
+  }
+
+  .resume-impact-strip {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin: 0 0 18px !important;
+  }
+
+  .resume-impact-strip article {
+    padding: 10px 12px !important;
+    border: 1px solid #c9d6e2 !important;
+    background: #f5f8fb !important;
+    break-inside: avoid;
+  }
+
+  .resume-impact-strip span,
+  .resume-contact span {
+    color: #355a7a !important;
+  }
+
+  .resume-impact-strip strong,
+  .resume-entry-head strong,
+  .resume-section h3 {
+    color: #14293d !important;
+  }
+
+  .resume-contact p {
+    padding: 8px 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid #dde5ed !important;
+    border-radius: 0 !important;
+  }
+
+  .resume-badge {
+    border: 1px solid #c9d6e2 !important;
+    background: #f5f8fb !important;
+    color: #355a7a !important;
+  }
+
+  .resume-entry {
+    padding-left: 12px !important;
+    border-left: 3px solid #7a9fc2 !important;
+    break-inside: avoid;
+  }
+
   .resume-summary,
   .resume-list li,
   .resume-entry p,
@@ -3664,7 +3807,7 @@ table td {
 
   .resume-entry-head span,
   .eyebrow {
-    color: #444 !important;
+    color: #5a7188 !important;
   }
 
   a {
