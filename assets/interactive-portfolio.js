@@ -114,6 +114,88 @@
     });
   }
 
+  function setupAISkillLab() {
+    var scoreNodes = qsAll("[data-ai-score]");
+    var quizzes = qsAll(".ai-quiz-card");
+    var resetButtons = qsAll(".ai-lab-reset");
+
+    if (!quizzes.length) {
+      return;
+    }
+
+    function updateScore() {
+      var total = quizzes.length;
+      var correct = quizzes.filter(function (quiz) {
+        return quiz.getAttribute("data-ai-result") === "correct";
+      }).length;
+      scoreNodes.forEach(function (node) {
+        node.textContent = correct + " / " + total + " correct";
+      });
+    }
+
+    quizzes.forEach(function (quiz) {
+      if (quiz.getAttribute("data-ai-bound") === "true") {
+        return;
+      }
+      quiz.setAttribute("data-ai-bound", "true");
+
+      var options = qsAll("[data-ai-answer]", quiz);
+      var feedback = quiz.querySelector(".ai-quiz-feedback");
+
+      options.forEach(function (option) {
+        option.addEventListener("click", function () {
+          if (quiz.getAttribute("data-ai-answered") === "true") {
+            return;
+          }
+
+          var result = option.getAttribute("data-ai-answer");
+          quiz.setAttribute("data-ai-answered", "true");
+          quiz.setAttribute("data-ai-result", result);
+          quiz.classList.add(result === "correct" ? "is-correct" : "is-wrong");
+
+          options.forEach(function (btn) {
+            var isCorrect = btn.getAttribute("data-ai-answer") === "correct";
+            btn.disabled = true;
+            btn.classList.toggle("is-correct", isCorrect);
+            btn.classList.toggle("is-wrong", btn === option && !isCorrect);
+          });
+
+          if (feedback) {
+            feedback.hidden = false;
+          }
+
+          updateScore();
+        });
+      });
+    });
+
+    resetButtons.forEach(function (button) {
+      if (button.getAttribute("data-ai-bound") === "true") {
+        return;
+      }
+      button.setAttribute("data-ai-bound", "true");
+
+      button.addEventListener("click", function () {
+        quizzes.forEach(function (quiz) {
+          quiz.removeAttribute("data-ai-answered");
+          quiz.removeAttribute("data-ai-result");
+          quiz.classList.remove("is-correct", "is-wrong");
+          var feedback = quiz.querySelector(".ai-quiz-feedback");
+          if (feedback) {
+            feedback.hidden = true;
+          }
+          qsAll("[data-ai-answer]", quiz).forEach(function (btn) {
+            btn.disabled = false;
+            btn.classList.remove("is-correct", "is-wrong");
+          });
+        });
+        updateScore();
+      });
+    });
+
+    updateScore();
+  }
+
   function setupPrintResume() {
     qsAll("[data-print-resume]").forEach(function (button) {
       button.addEventListener("click", function () {
@@ -359,12 +441,79 @@
     placeTarget();
   }
 
+  function createAISkillLabFloater() {
+    var shell = document.createElement("div");
+    shell.className = "ai-lab-shell";
+    shell.innerHTML =
+      '<button class="ai-lab-launcher" type="button">AI Skill Lab</button>' +
+      '<div class="ai-lab-floater" hidden>' +
+      '<div class="ai-lab-floater-head">' +
+      '<span>AI Skill Lab</span>' +
+      '<button class="ai-lab-close" type="button">Close</button>' +
+      '</div>' +
+      '<div class="ai-lab-floater-body">' +
+      '<div class="ai-lab-scorebar">' +
+      '<div><span class="signal-label">Lab Score</span><strong class="ai-lab-score" data-ai-score="0">0 / 3 correct</strong></div>' +
+      '<button class="secondary-action ai-lab-reset" type="button">Reset Lab</button>' +
+      '</div>' +
+      '<div class="ai-quiz-grid ai-quiz-grid-floater">' +
+      '<article class="ai-quiz-card" data-ai-quiz="prompt">' +
+      '<span class="card-index">Challenge 01</span><h3>Prompt Design</h3>' +
+      '<p class="ai-quiz-question">A PM asks: “Use AI to summarize customer calls.” What is the best next step?</p>' +
+      '<div class="ai-quiz-options">' +
+      '<button type="button" data-ai-answer="wrong">Ship a summarizer immediately and improve later.</button>' +
+      '<button type="button" data-ai-answer="correct">Clarify users, output format, source quality, success criteria, and review loop before designing the prompt/system.</button>' +
+      '<button type="button" data-ai-answer="wrong">Pick the biggest model first and optimize cost later.</button>' +
+      '</div>' +
+      '<div class="ai-quiz-feedback" hidden>Strong AI delivery starts by defining context, reliability needs, output shape, and human review expectations.</div>' +
+      '</article>' +
+      '<article class="ai-quiz-card" data-ai-quiz="rag">' +
+      '<span class="card-index">Challenge 02</span><h3>RAG Judgment</h3>' +
+      '<p class="ai-quiz-question">When is a RAG-style approach most useful?</p>' +
+      '<div class="ai-quiz-options">' +
+      '<button type="button" data-ai-answer="wrong">When you want the model to be more creative with no constraints.</button>' +
+      '<button type="button" data-ai-answer="correct">When answers must stay grounded in changing documents, internal knowledge, or source-controlled facts.</button>' +
+      '<button type="button" data-ai-answer="wrong">Whenever any chatbot exists, regardless of data freshness.</button>' +
+      '</div>' +
+      '<div class="ai-quiz-feedback" hidden>Retrieval helps when freshness, grounding, and traceability matter more than free-form generation.</div>' +
+      '</article>' +
+      '<article class="ai-quiz-card" data-ai-quiz="risk">' +
+      '<span class="card-index">Challenge 03</span><h3>Production Risk</h3>' +
+      '<p class="ai-quiz-question">What is the best early production safeguard for an AI workflow used by real teams?</p>' +
+      '<div class="ai-quiz-options">' +
+      '<button type="button" data-ai-answer="wrong">Hide the prompts so nobody questions the results.</button>' +
+      '<button type="button" data-ai-answer="wrong">Trust model quality if the demo looked good once.</button>' +
+      '<button type="button" data-ai-answer="correct">Add evaluation criteria, human review checkpoints, and visible failure handling before scaling usage.</button>' +
+      '</div>' +
+      '<div class="ai-quiz-feedback" hidden>Reliable AI systems need evaluation, review, and explicit failure paths, not just a strong first demo.</div>' +
+      '</article>' +
+      '</div>' +
+      '<div class="ai-deepcut-panel"><p class="eyebrow">DEEP CUT</p><h3>Bonus Scenario</h3><p>Your organization wants an internal AI assistant. The real question is not “Which model?” first. The real question is: what decisions, workflows, knowledge sources, and review constraints will make that assistant useful and safe?</p></div>' +
+      '</div>' +
+      '</div>';
+    document.body.appendChild(shell);
+
+    var launcher = shell.querySelector(".ai-lab-launcher");
+    var panel = shell.querySelector(".ai-lab-floater");
+    var closeButton = shell.querySelector(".ai-lab-close");
+
+    launcher.addEventListener("click", function () {
+      panel.hidden = !panel.hidden;
+    });
+
+    closeButton.addEventListener("click", function () {
+      panel.hidden = true;
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     setupPersonaTabs();
     setupTimeline();
     setupSimulator();
     setupTeardowns();
     setupRecommendationFilters();
+    createAISkillLabFloater();
+    setupAISkillLab();
     setupPrintResume();
     setupReveal();
     createCommandPalette();
