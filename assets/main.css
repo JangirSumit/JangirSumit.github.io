@@ -924,8 +924,13 @@ table td {
 .launcher-copy p,
 .footer-line {
   color: var(--muted);
-  font-size: 18px;
-  line-height: 1.75;
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.hero-text,
+.launcher-copy p {
+  max-width: 62ch;
 }
 
 .hero-actions {
@@ -990,7 +995,7 @@ table td {
 .launcher-card strong {
   display: block;
   font-size: 16px;
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 .hero-visual {
@@ -1772,8 +1777,12 @@ table td {
 .project-card p,
 .detail-line {
   color: var(--muted);
-  font-size: 18px;
-  line-height: 1.75;
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.section-intro {
+  max-width: 62ch;
 }
 
 .timeline-shell,
