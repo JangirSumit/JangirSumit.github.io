@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Resume | Sumit Jangir</title>
   <meta name="description"
-    content="Resume page for Sumit Jangir, Engineering Manager at Leapwork." />
+    content="Printable resume UI for Sumit Jangir, Engineering Manager at Leapwork." />
   <meta property="og:title" content="Resume | Sumit Jangir" />
   <meta property="og:description"
-    content="A downloadable and embedded resume for Sumit Jangir." />
+    content="A structured and printable resume page for Sumit Jangir." />
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="Sumit Jangir" />
   <meta property="og:type" content="website" />
@@ -59,23 +59,134 @@
     <main class="page-content" aria-label="Content">
       <section class="wrapper section-hero">
         <p class="eyebrow">RESUME</p>
-        <h1 class="section-title">A formal snapshot for recruiters, founders, and leadership conversations.</h1>
+        <h1 class="section-title">A structured resume UI that is readable online and printable offline.</h1>
         <p class="section-intro">
-          This version keeps the fast scan available while the rest of the site tells the broader story behind the
-          document.
+          This version is built as part of the site itself so the resume feels like a product artifact, not just an attachment.
         </p>
       </section>
 
       <section class="wrapper single-panel-wrap">
-        <article class="section-panel">
-          <div class="link-row">
-            <a class="primary-action" href="/Sumit's%20Resume.pdf">Open PDF</a>
+        <article class="section-panel resume-panel">
+          <div class="resume-toolbar">
+            <button class="primary-action" type="button" data-print-resume="true">Print Resume</button>
           </div>
-          <div class="document-shell">
-            <object data="/Sumit's%20Resume.pdf" type="application/pdf" width="100%" height="720">
-              <embed src="/Sumit's%20Resume.pdf" />
-              <p>This browser does not support PDFs. Please <a href="/Sumit's%20Resume.pdf">download the resume</a>.</p>
-            </object>
+
+          <div class="resume-sheet" id="resume-sheet">
+            <header class="resume-header">
+              <div>
+                <p class="eyebrow">ENGINEERING MANAGER</p>
+                <h2>Sumit Jangir</h2>
+                <p class="resume-summary">
+                  Engineering Manager at Leapwork with a strong hands-on foundation across JavaScript, React, C#/.NET,
+                  Azure, APIs, developer productivity, and AI-assisted engineering workflows.
+                </p>
+              </div>
+              <div class="resume-contact">
+                <p><a href="mailto:sumitjangir.jecrc@gmail.com">sumitjangir.jecrc@gmail.com</a></p>
+                <p><a href="https://github.com/jangirsumit">github.com/jangirsumit</a></p>
+                <p><a href="https://www.linkedin.com/in/jangirsumit">linkedin.com/in/jangirsumit</a></p>
+                <p>Gurgaon, India</p>
+              </div>
+            </header>
+
+            <div class="resume-grid">
+              <section class="resume-section resume-section-wide">
+                <h3>Experience</h3>
+                <div class="resume-entry">
+                  <div class="resume-entry-head">
+                    <strong>Leapwork</strong>
+                    <span>Sep 2021 - Present</span>
+                  </div>
+                  <p class="resume-role">Engineering Manager</p>
+                  <p>Leading engineering with focus on delivery systems, AI-enabled workflows, developer effectiveness, platform thinking, and execution clarity.</p>
+                </div>
+                <div class="resume-entry">
+                  <div class="resume-entry-head">
+                    <strong>Saxo Bank</strong>
+                    <span>Feb 2018 - Sep 2021</span>
+                  </div>
+                  <p class="resume-role">JavaScript Full Stack Developer</p>
+                  <p>Worked on SaxoTraderGO, a cross-device online trading platform with product-scale frontend systems and trust-critical workflows.</p>
+                </div>
+                <div class="resume-entry">
+                  <div class="resume-entry-head">
+                    <strong>Xebia</strong>
+                    <span>Feb 2018 - Aug 2019</span>
+                  </div>
+                  <p class="resume-role">JavaScript Full Stack Developer</p>
+                  <p>Delivered consulting-led product engineering work with strong execution discipline and client-facing adaptability.</p>
+                </div>
+                <div class="resume-entry">
+                  <div class="resume-entry-head">
+                    <strong>Nagarro</strong>
+                    <span>Mar 2016 - Feb 2018</span>
+                  </div>
+                  <p class="resume-role">Full Stack Developer</p>
+                  <p>Built end-to-end solutions across enterprise web systems, frontend experiences, and engineering delivery.</p>
+                </div>
+                <div class="resume-entry">
+                  <div class="resume-entry-head">
+                    <strong>Tata Consultancy Services</strong>
+                    <span>Jan 2013 - Mar 2016</span>
+                  </div>
+                  <p class="resume-role">Full Stack Developer</p>
+                  <p>Built the professional foundation in enterprise engineering, teamwork, ownership, and technical delivery.</p>
+                </div>
+              </section>
+
+              <section class="resume-section">
+                <h3>Core Skills</h3>
+                <ul class="resume-list">
+                  <li>Engineering Management</li>
+                  <li>JavaScript / React</li>
+                  <li>C# / .NET / APIs</li>
+                  <li>Azure / CI-CD / DevOps thinking</li>
+                  <li>AI workflows / OpenAI / RAG / MCP-aware tooling</li>
+                  <li>Architecture patterns: MVC, modular design, vertical slice thinking</li>
+                </ul>
+              </section>
+
+              <section class="resume-section">
+                <h3>Leadership Value</h3>
+                <ul class="resume-list">
+                  <li>Turns ambiguity into delivery momentum</li>
+                  <li>Builder credibility plus management clarity</li>
+                  <li>Balances people growth with product execution</li>
+                  <li>Designs systems that improve team leverage</li>
+                </ul>
+              </section>
+
+              <section class="resume-section">
+                <h3>Selected Projects</h3>
+                <ul class="resume-list">
+                  <li>Leapwork product</li>
+                  <li>SaxoTraderGO</li>
+                  <li>Saltmarsh</li>
+                  <li>Vive</li>
+                  <li>Nuble, TMDB, Weather App, CSVBreaker, Doodle</li>
+                </ul>
+              </section>
+
+              <section class="resume-section">
+                <h3>Education</h3>
+                <div class="resume-entry compact">
+                  <div class="resume-entry-head">
+                    <strong>B.Tech, Information Technology</strong>
+                    <span>2012</span>
+                  </div>
+                  <p>Jaipur Engineering College and Research Centre, Jaipur</p>
+                </div>
+              </section>
+
+              <section class="resume-section">
+                <h3>Recognition</h3>
+                <ul class="resume-list">
+                  <li>Multiple public LinkedIn recommendations</li>
+                  <li>Appreciations in Xebia / Saxo work</li>
+                  <li>Star of the Month, On the Spot, Best Team, Service Commitment awards</li>
+                </ul>
+              </section>
+            </div>
           </div>
         </article>
       </section>

@@ -114,6 +114,14 @@
     });
   }
 
+  function setupPrintResume() {
+    qsAll("[data-print-resume]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        window.print();
+      });
+    });
+  }
+
   function setupReveal() {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -243,14 +251,124 @@
     });
   }
 
+  function createGame() {
+    var shell = document.createElement("div");
+    shell.className = "game-shell";
+    shell.innerHTML =
+      '<button class="game-launcher" type="button">Play Game</button>' +
+      '<div class="game-panel" hidden>' +
+      '<div class="game-head">' +
+      '<span>Mini Game: Catch the Pulse</span>' +
+      '<button class="game-close" type="button">Close</button>' +
+      '</div>' +
+      '<div class="game-meta">' +
+      '<span class="game-score">Score: 0</span>' +
+      '<span class="game-timer">Time: 20</span>' +
+      '<button class="game-start" type="button">Start</button>' +
+      '</div>' +
+      '<div class="game-board">' +
+      '<button class="game-target" type="button" aria-label="Catch the pulse"></button>' +
+      '<div class="game-message">Hit the moving pulse as many times as you can in 20 seconds.</div>' +
+      '</div>' +
+      '</div>';
+    document.body.appendChild(shell);
+
+    var launcher = shell.querySelector(".game-launcher");
+    var panel = shell.querySelector(".game-panel");
+    var closeButton = shell.querySelector(".game-close");
+    var startButton = shell.querySelector(".game-start");
+    var board = shell.querySelector(".game-board");
+    var target = shell.querySelector(".game-target");
+    var scoreEl = shell.querySelector(".game-score");
+    var timerEl = shell.querySelector(".game-timer");
+    var messageEl = shell.querySelector(".game-message");
+    var score = 0;
+    var timeLeft = 20;
+    var gameInterval = null;
+    var countdown = null;
+    var active = false;
+
+    function placeTarget() {
+      var maxX = Math.max(board.clientWidth - 48, 10);
+      var maxY = Math.max(board.clientHeight - 48, 10);
+      var x = Math.floor(Math.random() * maxX);
+      var y = Math.floor(Math.random() * maxY);
+      target.style.left = x + "px";
+      target.style.top = y + "px";
+    }
+
+    function stopGame() {
+      active = false;
+      window.clearInterval(gameInterval);
+      window.clearInterval(countdown);
+      gameInterval = null;
+      countdown = null;
+      target.disabled = true;
+      messageEl.textContent = "Final score: " + score + ". Hit Start to play again.";
+    }
+
+    function startGame() {
+      score = 0;
+      timeLeft = 20;
+      active = true;
+      scoreEl.textContent = "Score: 0";
+      timerEl.textContent = "Time: 20";
+      messageEl.textContent = "Go!";
+      target.disabled = false;
+      placeTarget();
+
+      window.clearInterval(gameInterval);
+      window.clearInterval(countdown);
+
+      gameInterval = window.setInterval(placeTarget, 900);
+      countdown = window.setInterval(function () {
+        timeLeft -= 1;
+        timerEl.textContent = "Time: " + timeLeft;
+        if (timeLeft <= 0) {
+          stopGame();
+        }
+      }, 1000);
+    }
+
+    launcher.addEventListener("click", function () {
+      panel.hidden = !panel.hidden;
+      if (!panel.hidden) {
+        placeTarget();
+      }
+    });
+
+    closeButton.addEventListener("click", function () {
+      panel.hidden = true;
+      if (active) {
+        stopGame();
+      }
+    });
+
+    startButton.addEventListener("click", startGame);
+
+    target.addEventListener("click", function () {
+      if (!active) {
+        return;
+      }
+      score += 1;
+      scoreEl.textContent = "Score: " + score;
+      placeTarget();
+    });
+
+    target.disabled = true;
+    placeTarget();
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     setupPersonaTabs();
     setupTimeline();
     setupSimulator();
     setupTeardowns();
     setupRecommendationFilters();
+    setupPrintResume();
     setupReveal();
     createCommandPalette();
     createAssistant();
+    createGame();
   });
 })();

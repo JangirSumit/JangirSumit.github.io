@@ -2981,7 +2981,8 @@ table td {
 }
 
 .command-launcher,
-.assistant-launcher {
+.assistant-launcher,
+.game-launcher {
   position: fixed;
   right: 22px;
   z-index: 40;
@@ -2999,6 +3000,7 @@ table td {
 
 .command-launcher { bottom: 22px; padding: 12px 16px; }
 .assistant-launcher { bottom: 72px; padding: 12px 16px; }
+.game-launcher { bottom: 122px; padding: 12px 16px; }
 
 .command-backdrop {
   position: fixed;
@@ -3061,6 +3063,101 @@ table td {
   width: min(420px, calc(100vw - 32px));
   overflow: hidden;
   z-index: 41;
+}
+
+.game-panel {
+  position: fixed;
+  right: 22px;
+  bottom: 172px;
+  width: min(360px, calc(100vw - 32px));
+  border-radius: 24px;
+  border: 1px solid rgba(158, 179, 202, 0.14);
+  background: rgba(5, 11, 20, 0.96);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.36);
+  overflow: hidden;
+  z-index: 41;
+}
+
+.game-head,
+.game-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+}
+
+.game-head {
+  border-bottom: 1px solid rgba(158, 179, 202, 0.12);
+  color: #7cf7d4;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.game-meta {
+  color: #eff6ff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.game-start,
+.game-close {
+  border: 1px solid rgba(158, 179, 202, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+  color: #eff6ff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.game-board {
+  position: relative;
+  height: 260px;
+  margin: 0 16px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(158, 179, 202, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(124, 247, 212, 0.08), transparent 34%),
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.03);
+  background-size: auto, 42px 42px, 42px 42px, auto;
+  overflow: hidden;
+}
+
+.game-target {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, #eff6ff 0%, #7cf7d4 22%, #66b8ff 58%, rgba(102, 184, 255, 0.12) 72%, transparent 100%);
+  box-shadow: 0 0 28px rgba(124, 247, 212, 0.24);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.game-target:hover {
+  transform: scale(1.06);
+}
+
+.game-target:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.game-message {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  color: #9eb3ca;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .assistant-head {
@@ -3150,12 +3247,250 @@ table td {
   }
 
   .command-launcher,
-  .assistant-launcher {
+  .assistant-launcher,
+  .game-launcher {
     right: 14px;
   }
 
   .assistant-panel {
     right: 14px;
     bottom: 114px;
+  }
+
+  .game-panel {
+    right: 14px;
+    bottom: 164px;
+  }
+}
+
+.ai-power-strip {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(124, 247, 212, 0.16);
+  background:
+    radial-gradient(circle at left center, rgba(124, 247, 212, 0.14), transparent 22%),
+    linear-gradient(180deg, rgba(10, 27, 39, 0.72) 0%, rgba(7, 18, 31, 0.9) 100%);
+}
+
+.ai-power-orb {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, #eff6ff 0%, #7cf7d4 22%, #66b8ff 58%, rgba(102, 184, 255, 0.12) 72%, transparent 100%);
+  box-shadow: 0 0 28px rgba(124, 247, 212, 0.24);
+  animation: pulseNode 2.8s ease-in-out infinite;
+}
+
+.ai-power-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #7cf7d4;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ai-power-text {
+  margin-bottom: 0;
+  color: #eff6ff;
+  line-height: 1.6;
+}
+
+.resume-panel {
+  overflow: visible;
+}
+
+.resume-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.resume-sheet {
+  padding: 34px;
+  border-radius: 28px;
+  border: 1px solid rgba(158, 179, 202, 0.12);
+  background: linear-gradient(180deg, rgba(11, 24, 43, 0.88) 0%, rgba(5, 13, 24, 0.96) 100%);
+}
+
+.resume-header {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(158, 179, 202, 0.12);
+}
+
+.resume-header h2 {
+  margin-bottom: 10px;
+  font-size: 44px;
+}
+
+.resume-summary {
+  margin-bottom: 0;
+  color: #9eb3ca;
+  line-height: 1.8;
+}
+
+.resume-contact {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.resume-contact p {
+  margin-bottom: 0;
+  color: #eff6ff;
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 22px;
+}
+
+.resume-section {
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(158, 179, 202, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.resume-section-wide {
+  grid-row: span 3;
+}
+
+.resume-section h3 {
+  margin-bottom: 16px;
+  font-size: 22px;
+}
+
+.resume-entry {
+  margin-bottom: 18px;
+}
+
+.resume-entry:last-child {
+  margin-bottom: 0;
+}
+
+.resume-entry-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.resume-entry-head strong {
+  font-size: 18px;
+}
+
+.resume-entry-head span {
+  color: #ffd166;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.resume-role {
+  margin-bottom: 8px;
+  color: #7cf7d4;
+}
+
+.resume-list {
+  margin-left: 18px;
+}
+
+.resume-list li {
+  margin-bottom: 10px;
+  color: #9eb3ca;
+}
+
+.resume-list li:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .resume-header,
+  .resume-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-section-wide {
+    grid-row: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .ai-power-strip {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .resume-sheet {
+    padding: 22px;
+  }
+
+  .resume-header h2 {
+    font-size: 34px;
+  }
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .site-header,
+  .site-footer,
+  .section-hero,
+  .resume-toolbar,
+  .command-launcher,
+  .assistant-launcher,
+  .assistant-panel,
+  .command-modal,
+  .command-backdrop {
+    display: none !important;
+  }
+
+  .page-content,
+  .wrapper,
+  .resume-panel,
+  .resume-sheet,
+  .resume-section {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #111 !important;
+    border: 0 !important;
+  }
+
+  .resume-summary,
+  .resume-list li,
+  .resume-entry p,
+  .resume-contact p,
+  .resume-role {
+    color: #333 !important;
+  }
+
+  .resume-entry-head span,
+  .eyebrow {
+    color: #444 !important;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: none !important;
   }
 }
